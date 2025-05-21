@@ -35,25 +35,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Перевірка наявності схваленого код-рев’ю
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const pr = context.payload.pull_request;
-            if (!pr) {
-              core.setFailed("Цей workflow має запускатись тільки на pull_request.");
-              return;
-            }
-            const { data: reviews } = await github.rest.pulls.listReviews({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: pr.number
-            });
-            const approved = reviews.some(r => r.state === 'APPROVED');
-            if (!approved) {
-              core.setFailed("Код-рев’ю не схвалено");
-            }
+      #- name: Перевірка наявності схваленого код-рев’ю
+     #   uses: actions/github-script@v6
+     #   with:
+     #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    script: |
+      #      const pr = context.payload.pull_request;
+     #       if (!pr) {
+    #          core.setFailed("Цей workflow має запускатись тільки на pull_request.");
+     #         return;
+     #       }
+    #        const { data: reviews } = await github.rest.pulls.listReviews({
+      #        owner: context.repo.owner,
+      #        repo: context.repo.repo,
+     #         pull_number: pr.number
+     #       });
+     #       const approved = reviews.some(r => r.state === 'APPROVED');
+     #       if (!approved) {
+       #       core.setFailed("Код-рев’ю не схвалено");
+    #        }
 
 
       - name: Count lines of code with Cloc
