@@ -24,7 +24,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest --junitxml=report.xml
+          pytest tests --junitxml=report.xml
 
   analysis:
     runs-on: ubuntu-latest
